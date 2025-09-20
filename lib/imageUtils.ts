@@ -1,5 +1,5 @@
 import imageUrlBuilder from "@sanity/image-url";
-import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import type { SanityImageSource, ImageFormat } from "@sanity/image-url/lib/types/types";
 
 export function createImageUrlBuilder(projectId: string | undefined, dataset: string | undefined) {
   return (source: SanityImageSource) =>
@@ -15,7 +15,7 @@ export function getOptimizedImageUrl(
     width?: number;
     height?: number;
     quality?: number;
-    format?: 'webp' | 'jpg' | 'png' | 'pjpg' | 'gif';
+    format?: ImageFormat;
     fit?: 'crop' | 'fill' | 'fillmax' | 'max' | 'scale' | 'clip' | 'min';
     crop?: 'center' | 'top' | 'bottom' | 'left' | 'right' | 'focalpoint';
   } = {}
