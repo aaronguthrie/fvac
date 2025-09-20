@@ -62,7 +62,7 @@ export default function Home() {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">Ready to Get Started?</h2>
           <p className="text-lg mb-8 max-w-2xl mx-auto">
-            Whether you're a complete beginner or an experienced athlete, 
+            Whether you&apos;re a complete beginner or an experienced athlete, 
             Finn Valley AC has a place for you. Come and be part of our athletic family.
           </p>
           <Link

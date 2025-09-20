@@ -2,6 +2,7 @@ import Link from "next/link";
 import { type SanityDocument } from "next-sanity";
 import { client } from "@/sanity/client";
 import { createImageUrlBuilder, getOptimizedImageUrl, imagePresets } from "@/lib/imageUtils";
+import Image from "next/image";
 
 const EVENTS_QUERY = `*[
   _type == "event"
@@ -80,10 +81,12 @@ export default async function Events() {
               return (
                 <div key={event._id} className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm">
                   {eventImageUrl && (
-                    <img
+                    <Image
                       src={eventImageUrl}
                       alt={event.title}
                       className="w-full h-48 object-cover"
+                      width={400}
+                      height={192}
                     />
                   )}
                   <div className="p-6">

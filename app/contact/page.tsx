@@ -36,7 +36,7 @@ export default function Contact() {
           <div className="bg-blue-50 border border-blue-200 p-4 rounded">
             <h3 className="font-semibold text-blue-800 mb-2">Training Times</h3>
             <p className="text-blue-700 text-sm">
-              Come along to any of our training sessions to meet the coaches and see what we're all about!
+              Come along to any of our training sessions to meet the coaches and see what we&apos;re all about!
             </p>
           </div>
         </div>

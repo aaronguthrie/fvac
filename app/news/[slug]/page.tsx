@@ -2,6 +2,7 @@ import { PortableText, type SanityDocument } from "next-sanity";
 import { client } from "@/sanity/client";
 import { createImageUrlBuilder, getOptimizedImageUrl, imagePresets } from "@/lib/imageUtils";
 import Link from "next/link";
+import Image from "next/image";
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
 
@@ -24,7 +25,7 @@ export default async function PostPage({
           ← Back to News
         </Link>
         <h1 className="text-4xl font-bold mb-6">Post Not Found</h1>
-        <p className="text-gray-600">The post you're looking for doesn't exist.</p>
+        <p className="text-gray-600">The post you&apos;re looking for doesn&apos;t exist.</p>
       </div>
     );
   }
@@ -40,12 +41,12 @@ export default async function PostPage({
       </Link>
       
       {postImageUrl && (
-        <img
+        <Image
           src={postImageUrl}
           alt={post.title}
           className="w-full aspect-video rounded-xl mb-8 object-cover"
-          width="800"
-          height="400"
+          width={800}
+          height={400}
         />
       )}
       

@@ -2,6 +2,7 @@ import { PortableText, type SanityDocument } from "next-sanity";
 import { client } from "@/sanity/client";
 import { createImageUrlBuilder, getOptimizedImageUrl, imagePresets } from "@/lib/imageUtils";
 import Link from "next/link";
+import Image from "next/image";
 
 const EVENT_QUERY = `*[_type == "event" && slug.current == $slug][0]{
   _id,
@@ -74,7 +75,7 @@ export default async function EventPage({
           ← Back to Events
         </Link>
         <h1 className="text-4xl font-bold mb-6">Event Not Found</h1>
-        <p className="text-gray-600">The event you're looking for doesn't exist.</p>
+        <p className="text-gray-600">The event you&apos;re looking for doesn&apos;t exist.</p>
       </div>
     );
   }
@@ -98,7 +99,6 @@ export default async function EventPage({
 
   // Finn Valley AC coordinates and address
   const finnValleyAddress = "Finn Valley Centre, Mill Brae, Stranorlar, Co. Donegal, F93 NV0T, Ireland";
-  const finnValleyCoords = "54.8018134,-7.765362";
   
   const displayLocation = event.isAtFinnValley ? "Finn Valley AC" : event.location;
   const displayAddress = event.isAtFinnValley ? finnValleyAddress : event.address;
@@ -128,12 +128,12 @@ export default async function EventPage({
       </Link>
       
       {eventImageUrl && (
-        <img
+        <Image
           src={eventImageUrl}
           alt={event.title}
           className="w-full aspect-video rounded-xl mb-8 object-cover"
-          width="800"
-          height="400"
+          width={800}
+          height={400}
         />
       )}
       
