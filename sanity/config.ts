@@ -21,6 +21,10 @@ export default defineConfig({
   auth: {
     // Force authentication - no anonymous access
     mode: 'replace',
-    providers: []
+    providers: [{
+      name: 'sanity',
+      title: 'Email/Password',
+      url: 'https://api.sanity.io/v2021-10-01/auth/login/sanity'
+    }]
   }
 })
