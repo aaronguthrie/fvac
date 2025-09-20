@@ -17,4 +17,10 @@ export default defineConfig({
   schema: {
     types: schemaTypes,
   },
+
+  auth: {
+    // Force authentication - no anonymous access
+    mode: 'replace',
+    providers: []
+  }
 })

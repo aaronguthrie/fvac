@@ -36,13 +36,47 @@ Vercel runs strict checks that MUST pass for deployment:
 - Maintain consistent component structure
 - Import statements should be organized (external packages first, then local imports)
 
-## Pre-Deployment Checklist
-Before committing changes:
-1. Run `npm run lint` to check for linting errors
-2. Run `npm run build` to verify TypeScript compilation
-3. Fix any ESLint errors (warnings are okay but avoid them)
-4. Ensure all images use Next.js Image component
-5. Check that all apostrophes in JSX are properly escaped
+## Development Workflow
+**CRITICAL: Always test locally before pushing to GitHub**
+
+### Pre-Commit Checklist (MANDATORY)
+Before committing ANY changes:
+
+1. **Run full build locally:** `npm run build`
+   - This catches ALL errors that Vercel will catch
+   - Saves time vs waiting for Vercel deployment failures
+   - Prevents broken deployments
+
+2. **Run linting:** `npm run lint`
+   - Fix any ESLint errors (warnings are okay but avoid them)
+
+3. **Code quality checks:**
+   - Ensure all images use Next.js `<Image>` component
+   - Check that all apostrophes in JSX are properly escaped with `&apos;`
+   - Verify no unused variables exist
+
+4. **Only commit if build succeeds locally**
+
+### Optimal Workflow
+```bash
+# 1. Make your changes
+# 2. Test locally
+npm run build          # MUST pass before pushing
+npm run lint           # Check for issues
+
+# 3. If everything passes, commit and push
+git add .
+git commit -m "..."
+git push
+
+# 4. Vercel will deploy successfully
+```
+
+**Why this matters:**
+- Vercel has the same build process as local
+- Failed Vercel deployments waste time and resources
+- Local builds are faster than waiting for Vercel feedback
+- Prevents client-facing broken deployments
 
 ## Common Issues to Avoid
 1. **Unescaped apostrophes** - Use `&apos;` in JSX content
@@ -58,8 +92,30 @@ npm run build     # Full build with type checking
 npm run dev       # Development server
 ```
 
+## Sanity Studio Security
+**CRITICAL: Studio must be secured for production**
+
+### Authentication Setup Required:
+1. **Sanity Project Access** (at [sanity.io/manage](https://sanity.io/manage)):
+   - Go to your project → "Access" tab
+   - Add staff members by email with "Editor" or "Admin" roles
+   - Remove any anonymous/public access
+   - Only approved users can access studio
+
+2. **Studio Configuration** (already configured):
+   - Authentication mode set to 'replace' (no anonymous access)
+   - Clean studio layout without website header
+   - Accessible at `/studio` route
+
+### Staff Login Process:
+- Staff visits `your-site.com/studio`
+- Sanity prompts for authentication
+- They sign in with approved Google/GitHub/email account
+- Access granted only to project members
+
 ## File Structure Notes
 - `/app` - Next.js App Router pages
+- `/app/studio` - Sanity Studio with dedicated layout
 - `/lib` - Utility functions (imageUtils.ts)
 - `/components` - Reusable React components
-- `/sanity` - Sanity CMS configuration
+- `/sanity` - Sanity CMS configuration and schema types
